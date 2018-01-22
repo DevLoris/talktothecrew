@@ -111,7 +111,12 @@ public class MessageListActivity extends Activity {
         handler.addOnDownloadListeners(new OnDownloadListener() {
             @Override
             public void onDownloadComplete(final JsonLoginResponse downloadedContent) {
-                list_messages.setAdapter(new MessageArrayAdapter(getApplicationContext(), downloadedContent.getMessages()));
+
+                final SharedPreferences settings =
+                        getSharedPreferences(PREFS_NAME, 0);
+                final String login =  settings.getString("login", "");
+
+                list_messages.setAdapter(new MessageArrayAdapter(getApplicationContext(), downloadedContent.getMessages(), login));
 
                 hideKeyboard();
             }

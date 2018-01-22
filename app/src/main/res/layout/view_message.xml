@@ -7,20 +7,21 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="5dp">
 
         <ImageView
-            android:layout_width="71dp"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/image_user" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp">
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="148dp"
@@ -28,15 +29,27 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="user"
                 android:id="@+id/user_message"
-                android:textSize="20dp" />
+                android:textSize="15dp"
+                android:textStyle="italic"
+                android:paddingLeft="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="user_mess"
-                android:id="@+id/message_message"
-                android:textSize="15dp" />
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:layout_weight="2.65"
+                android:id="@+id/message_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="user_mess"
+                    android:id="@+id/message_message"
+                    android:textSize="15dp" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

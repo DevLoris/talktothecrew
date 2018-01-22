@@ -47,6 +47,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("access", downloadedContent.getAccesstoken());
+                editor.putString("login",  input_blase.getText().toString());
                 editor.commit();
 
                 Intent intent = new Intent(getApplicationContext(), ChannelListActivity.class);
