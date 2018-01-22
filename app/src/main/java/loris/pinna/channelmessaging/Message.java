@@ -12,15 +12,25 @@ public class Message {
      */
 
     private int userID;
+    private String username;
     private String message;
     private String date;
     private String imageUrl;
 
-    public Message(int userID, String message, String date, String imageUrl) {
+    public Message(int userID, String username, String message, String date, String imageUrl) {
         this.userID = userID;
+        this.username = username;
         this.message = message;
         this.date = date;
         this.imageUrl = imageUrl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getUserID() {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,8 +30,9 @@ public class MessageArrayAdapter extends ArrayAdapter<Message> {
 
         View rowView = inflater.inflate(  R.layout.view_message, parent, false);
 
+
         TextView textView = (TextView) rowView.findViewById(R.id.user_message);
-        textView.setText(item.getUserID());
+        textView.setText(item.getUsername());
         textView.setTextColor(Color.BLACK);
 
         TextView textView2 = (TextView) rowView.findViewById(R.id.message_message);

@@ -1,6 +1,7 @@
 package loris.pinna.channelmessaging;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +29,7 @@ public class ChannelListActivity extends Activity implements View.OnClickListene
         /*
         Récup du token
          */
-        SharedPreferences settings =
+        final SharedPreferences settings =
                 getSharedPreferences(PREFS_NAME, 0);
         final String token =  settings.getString("access", "");
          /*
@@ -45,21 +46,29 @@ public class ChannelListActivity extends Activity implements View.OnClickListene
         handler.addOnDownloadListeners(new OnDownloadListener() {
             @Override
             public void onDownloadComplete(final JsonLoginResponse downloadedContent) {
-                Toast.makeText(getApplicationContext(), downloadedContent.getChannels().toString() ,Toast.LENGTH_SHORT).show();
-
 
                 lvMyListView.setAdapter(new MySimpleArrayAdapter(getApplicationContext(), downloadedContent.getChannels()));
                 lvMyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Channel channel = downloadedContent.getChannels().get(position);
+
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putInt("channel", channel.getChannelID());
+                        editor.putString("channel_name", channel.getName());
+                        editor.commit();
+
+
+                        Intent intent = new Intent(getApplicationContext(), MessageListActivity.class);
+                        startActivity(intent);
+
                     }
                 });
             }
 
             @Override
             public void onDownloadError(JsonLoginResponse error) {
-                //Toast.makeText(getApplicationContext(), error.getResponse() ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.getResponse() ,Toast.LENGTH_SHORT).show();
             }
         });
         handler.execute(postRequest);

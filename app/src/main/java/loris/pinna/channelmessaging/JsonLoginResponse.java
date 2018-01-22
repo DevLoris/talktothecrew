@@ -56,4 +56,12 @@ public class JsonLoginResponse {
     public void setChannels(ArrayList<Channel> channels) {
         this.channels = channels;
     }
+
+    public ArrayList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(ArrayList<Message> messages) {
+        this.messages = messages;
+    }
 }
