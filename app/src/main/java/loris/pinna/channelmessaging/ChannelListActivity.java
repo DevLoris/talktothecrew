@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class ChannelListActivity extends Activity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channellist);
 
-
+        lvMyListView = (ListView)findViewById(R.id.channels);
 
         /*
         Récup du token
@@ -43,11 +44,17 @@ public class ChannelListActivity extends Activity implements View.OnClickListene
         HttpPostHandler handler = new HttpPostHandler(this);
         handler.addOnDownloadListeners(new OnDownloadListener() {
             @Override
-            public void onDownloadComplete(JsonLoginResponse downloadedContent) {
+            public void onDownloadComplete(final JsonLoginResponse downloadedContent) {
                 Toast.makeText(getApplicationContext(), downloadedContent.getChannels().toString() ,Toast.LENGTH_SHORT).show();
 
-                lvMyListView = (ListView)findViewById(R.id.channels);
+
                 lvMyListView.setAdapter(new MySimpleArrayAdapter(getApplicationContext(), downloadedContent.getChannels()));
+                lvMyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Channel channel = downloadedContent.getChannels().get(position);
+                    }
+                });
             }
 
             @Override

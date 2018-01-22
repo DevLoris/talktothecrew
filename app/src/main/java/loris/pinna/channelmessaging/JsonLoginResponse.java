@@ -2,6 +2,7 @@ package loris.pinna.channelmessaging;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class JsonLoginResponse {
     private String response;
@@ -10,6 +11,7 @@ public class JsonLoginResponse {
 
 
     private ArrayList<Channel> channels;
+    private ArrayList<Message> messages;
 
 
     public JsonLoginResponse(String response, int code, String accesstoken) {
@@ -18,9 +20,10 @@ public class JsonLoginResponse {
         this.accesstoken = accesstoken;
     }
 
-    public JsonLoginResponse(ArrayList<Channel> channels) {
-        this.channels = channels;
-    }
+  /*  public JsonLoginResponse(ArrayList<Object> channels) {
+        if(channels.get(0) instanceof Channel)
+            this.channels = (ArrayList<Channel>) channels;
+    } */
 
     public String getResponse() {
         return response;
