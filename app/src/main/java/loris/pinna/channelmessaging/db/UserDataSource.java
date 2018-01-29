@@ -18,8 +18,11 @@ public class UserDataSource {
     // Database fields
     private SQLiteDatabase database;
     private FriendsDB dbHelper;
-    private String[] allColumns = { FriendsDB.KEY_ID,FriendsDB.KEY_NAME,
-            FriendsDB.KEY_IMAGE };
+    private String[] allColumns = {
+            FriendsDB.KEY_ID,
+            FriendsDB.KEY_NAME,
+            FriendsDB.KEY_IMAGE
+    };
     public UserDataSource(Context context) {
         dbHelper = new FriendsDB(context);
     }
@@ -29,35 +32,35 @@ public class UserDataSource {
     public void close() {
         dbHelper.close();
     }
-    public User createHomme(String nom,int age) {
+    public User createUser(int userId, String nom, String url) {
         ContentValues values = new ContentValues();
 
+        values.put(FriendsDB.KEY_ID, userId);
         values.put(FriendsDB.KEY_NAME, nom);
-        values.put(FriendsDB.KEY_IMAGE, age);
-        long newID = database.insert(FriendsDB.HOMME_TABLE_NAME, null,
-                values);
-        Cursor cursor = database.query(FriendsDB.HOMME_TABLE_NAME, allColumns,
-                FriendsDB.KEY_ID + " = \"" + newID+"\"", null,
-                null, null, null);
+        values.put(FriendsDB.KEY_IMAGE, url);
+
+         database.insert(FriendsDB.USER_TABLENAME, null,  values);
+
+        Cursor cursor = database.query(FriendsDB.USER_TABLENAME, allColumns,  FriendsDB.KEY_ID + " = \"" + userId +"\"", null,  null, null, null);
         cursor.moveToFirst();
-        User newHomme = cursorToUser(cursor);
+        User newUser = cursorToUser(cursor);
         cursor.close();
-        return newHomme;
+        return newUser;
     }
 
     public List<User> getAllUsers() {
-        List<User> lesHommes = new ArrayList<User>();
-        Cursor cursor = database.query(FriendsDB.HOMME_TABLE_NAME,
+        List<User> users = new ArrayList<User>();
+        Cursor cursor = database.query(FriendsDB.USER_TABLENAME,
                 allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             User unHomme = cursorToUser(cursor);
-            lesHommes.add(unHomme);
+            users.add(unHomme);
             cursor.moveToNext();
         }
         // make sure to close the cursor
         cursor.close();
-        return lesHommes;
+        return users;
     }
 
     private User cursorToUser(Cursor cursor) {
@@ -70,7 +73,7 @@ public class UserDataSource {
 
     public void deleteFriend(User unHomme) {
         int  id = unHomme.getUserID();
-        database.delete(FriendsDB.HOMME_TABLE_NAME, FriendsDB.KEY_ID
+        database.delete(FriendsDB.USER_TABLENAME, FriendsDB.KEY_ID
                 + " = \"" + id +"\"", null);
     }
 }

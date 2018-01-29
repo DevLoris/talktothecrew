@@ -19,9 +19,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import loris.pinna.channelmessaging.adapter.MessageArrayAdapter;
+import loris.pinna.channelmessaging.classes.Message;
+import loris.pinna.channelmessaging.dialog.FriendsDialog;
 import loris.pinna.channelmessaging.http.HttpPostHandler;
 import loris.pinna.channelmessaging.http.JsonLoginResponse;
 import loris.pinna.channelmessaging.http.PostRequest;
@@ -32,6 +35,7 @@ public class MessageListActivity extends Activity {
     private ListView list_messages;
     private EditText input_chatmessage;
     private TextView conversations_name;
+    private ArrayList<Message> messages = new ArrayList<>();
 
     private static final String PREFS_NAME = "access_token";
 
@@ -56,6 +60,20 @@ public class MessageListActivity extends Activity {
 
        refreshMessage(token, channel);
 
+        list_messages.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                FriendsDialog dialog = new FriendsDialog();
+                Message message = messages.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", message.getUserID());
+                bundle.putString("name", message.getUsername());
+                bundle.putString("url", message.getImageUrl());
+                dialog.setArguments(bundle);
+                dialog.show(getFragmentManager(), "friend");
+                return true;
+            }
+        });
         list_messages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -125,6 +143,7 @@ public class MessageListActivity extends Activity {
                         getSharedPreferences(PREFS_NAME, 0);
                 final String login =  settings.getString("login", "");
 
+                messages = downloadedContent.getMessages();
                 list_messages.setAdapter(new MessageArrayAdapter(getApplicationContext(), downloadedContent.getMessages(), login, getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)));
 
                 hideKeyboard();
