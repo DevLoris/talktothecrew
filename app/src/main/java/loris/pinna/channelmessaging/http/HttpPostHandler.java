@@ -30,6 +30,7 @@ import loris.pinna.channelmessaging.listeners.OnDownloadListener;
 public class HttpPostHandler extends AsyncTask<PostRequest, Long, JsonLoginResponse> {
     public ArrayList<OnDownloadListener> onDownloadListeners = new ArrayList<>();
 
+
     private Context myContext;
     public HttpPostHandler(Context myContext)
     {

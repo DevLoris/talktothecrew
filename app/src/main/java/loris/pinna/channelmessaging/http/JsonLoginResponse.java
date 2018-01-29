@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import loris.pinna.channelmessaging.classes.Channel;
 import loris.pinna.channelmessaging.classes.Message;
 
-public class JsonLoginResponse {
+public class  JsonLoginResponse {
     private String response;
     private int code;
     private String accesstoken;
