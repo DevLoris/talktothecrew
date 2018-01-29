@@ -1,10 +1,21 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.adapter;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +23,26 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import loris.pinna.channelmessaging.http.HttpGetImage;
+import loris.pinna.channelmessaging.http.ImageRequest;
+import loris.pinna.channelmessaging.classes.Message;
+import loris.pinna.channelmessaging.R;
+import loris.pinna.channelmessaging.listeners.OnImageDownloadListener;
 
 public class MessageArrayAdapter extends ArrayAdapter<Message> {
     private final Context context;
     private final ArrayList<Message> values;
     private final String username;
-    public MessageArrayAdapter(Context context, ArrayList<Message> values, String username) {
+    private final File path;
+    public MessageArrayAdapter(Context context, ArrayList<Message> values, String username, File path) {
         super(context,  R.layout.view_message, values);
         this.context = context;
         this.values = values;
+        this.path = path;
         this.username = username;
     }
     @Override
@@ -50,18 +69,16 @@ public class MessageArrayAdapter extends ArrayAdapter<Message> {
 
         final ImageView img = (ImageView) rowView.findViewById(R.id.image_user);
 
-        ImageRequest request = new ImageRequest(item.getImageUrl(), item.getUsername() + ".jpg");
+        ImageRequest request = new ImageRequest(item.getImageUrl(), this.path + item.getUsername() + ".jpg");
         HttpGetImage image = new HttpGetImage(this.context);
         image.addOnImageDownload(new OnImageDownloadListener() {
             @Override
                 public void onDownloadComplete(String downloadedContent) {
-                Toast.makeText(context, downloadedContent, Toast.LENGTH_LONG).show();
-                img.setImageBitmap(BitmapFactory.decodeFile(downloadedContent));
+                    img.setImageBitmap( getRoundedCornerBitmap(BitmapFactory.decodeFile(downloadedContent)));
             }
 
             @Override
             public void onDownloadError(String error) {
-
             }
         });
         image.execute(request);
@@ -72,5 +89,29 @@ public class MessageArrayAdapter extends ArrayAdapter<Message> {
         }
 
         return rowView;
+    }
+
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
+        if(bitmap == null)
+            return bitmap;
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = 12;
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
     }
 }

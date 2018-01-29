@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Les Crews de discussions"
+        android:text="Les Copaings de discussions"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/abc_action_bar_overflow_padding_end_material" />
@@ -36,5 +36,5 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="297dp"
-        android:id="@+id/channels" />
+        android:id="@+id/friends_list" />
 </LinearLayout>

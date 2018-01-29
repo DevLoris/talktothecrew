@@ -1,4 +1,9 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.http;
 
 import java.util.HashMap;
 

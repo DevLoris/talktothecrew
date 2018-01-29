@@ -1,8 +1,12 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.http;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -20,6 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import loris.pinna.channelmessaging.listeners.OnDownloadListener;
 
 public class HttpPostHandler extends AsyncTask<PostRequest, Long, JsonLoginResponse> {
     public ArrayList<OnDownloadListener> onDownloadListeners = new ArrayList<>();

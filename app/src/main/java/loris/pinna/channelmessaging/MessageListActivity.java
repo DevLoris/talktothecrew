@@ -1,10 +1,15 @@
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
 package loris.pinna.channelmessaging;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -14,9 +19,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
+
+import loris.pinna.channelmessaging.adapter.MessageArrayAdapter;
+import loris.pinna.channelmessaging.http.HttpPostHandler;
+import loris.pinna.channelmessaging.http.JsonLoginResponse;
+import loris.pinna.channelmessaging.http.PostRequest;
+import loris.pinna.channelmessaging.listeners.OnDownloadListener;
 
 public class MessageListActivity extends Activity {
     private Button send_message;
@@ -116,7 +125,7 @@ public class MessageListActivity extends Activity {
                         getSharedPreferences(PREFS_NAME, 0);
                 final String login =  settings.getString("login", "");
 
-                list_messages.setAdapter(new MessageArrayAdapter(getApplicationContext(), downloadedContent.getMessages(), login));
+                list_messages.setAdapter(new MessageArrayAdapter(getApplicationContext(), downloadedContent.getMessages(), login, getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)));
 
                 hideKeyboard();
             }

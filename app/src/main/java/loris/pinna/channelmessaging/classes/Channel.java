@@ -1,4 +1,9 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.classes;
 
 public class Channel {
     private int channelID;

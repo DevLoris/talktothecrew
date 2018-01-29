@@ -1,3 +1,8 @@
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
 package loris.pinna.channelmessaging;
 
 import android.app.Activity;
@@ -8,14 +13,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
+import loris.pinna.channelmessaging.adapter.MySimpleArrayAdapter;
+import loris.pinna.channelmessaging.classes.Channel;
+import loris.pinna.channelmessaging.http.HttpPostHandler;
+import loris.pinna.channelmessaging.http.JsonLoginResponse;
+import loris.pinna.channelmessaging.http.PostRequest;
+import loris.pinna.channelmessaging.listeners.OnDownloadListener;
+
 public class ChannelListActivity extends Activity implements View.OnClickListener {
 
     private ListView lvMyListView;
+    private Button friends;
+    private Button channels;
 
     private static final String PREFS_NAME = "access_token";
 
@@ -25,6 +38,23 @@ public class ChannelListActivity extends Activity implements View.OnClickListene
         setContentView(R.layout.activity_channellist);
 
         lvMyListView = (ListView)findViewById(R.id.channels);
+        friends = (Button) findViewById(R.id.friends_button);
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        channels = (Button) findViewById(R.id.crews_button);
+        channels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ChannelListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         /*
         Récup du token

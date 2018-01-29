@@ -1,8 +1,14 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.http;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+
+import loris.pinna.channelmessaging.classes.Channel;
+import loris.pinna.channelmessaging.classes.Message;
 
 public class JsonLoginResponse {
     private String response;

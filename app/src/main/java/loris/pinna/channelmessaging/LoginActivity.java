@@ -1,3 +1,8 @@
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
 package loris.pinna.channelmessaging;
 
 import android.app.Activity;
@@ -9,9 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.util.HashMap;
+
+import loris.pinna.channelmessaging.http.HttpPostHandler;
+import loris.pinna.channelmessaging.http.JsonLoginResponse;
+import loris.pinna.channelmessaging.http.PostRequest;
+import loris.pinna.channelmessaging.listeners.OnDownloadListener;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
     private Button login;

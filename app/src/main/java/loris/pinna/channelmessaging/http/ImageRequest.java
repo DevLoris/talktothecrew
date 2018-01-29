@@ -1,6 +1,9 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
 
-import java.util.HashMap;
+package loris.pinna.channelmessaging.http;
 
 /**
  * Created by pinnal on 19/01/2018.

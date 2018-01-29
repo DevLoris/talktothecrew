@@ -1,4 +1,9 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.classes;
 
 /**
  * Created by pinnal on 22/01/2018.

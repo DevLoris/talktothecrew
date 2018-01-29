@@ -1,4 +1,11 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.listeners;
+
+import loris.pinna.channelmessaging.http.JsonLoginResponse;
 
 /**
  * Created by pinnal on 19/01/2018.

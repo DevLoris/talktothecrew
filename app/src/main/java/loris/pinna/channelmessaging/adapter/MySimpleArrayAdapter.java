@@ -1,17 +1,23 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.adapter;
 
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import loris.pinna.channelmessaging.classes.Channel;
+import loris.pinna.channelmessaging.R;
 
 public class MySimpleArrayAdapter extends ArrayAdapter<Channel> {
     private final Context context;

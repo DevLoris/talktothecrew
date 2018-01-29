@@ -1,33 +1,27 @@
-package loris.pinna.channelmessaging;
+/*
+ * Copyright Loris Pinna
+ * lorispinna.com =)
+ */
+
+package loris.pinna.channelmessaging.http;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
+import loris.pinna.channelmessaging.listeners.OnImageDownloadListener;
 
 public class HttpGetImage extends AsyncTask<ImageRequest, Long, String> {
+    private static final String TAG = HttpGetImage.class.getSimpleName();
     public ArrayList<OnImageDownloadListener> onImageDownloadListeners = new ArrayList<>();
 
     private Context myContext;
@@ -89,7 +83,7 @@ read(-1) and write on the fly in the file.*/
             return fileName;
         } catch (IOException e) {
             //TODO HANDLER
-            Toast.makeText(this.myContext, "Error : " + e, Toast.LENGTH_LONG).show();
+            Log.e(TAG, "downloadFromUrl: " , e );
             return null;
         }
     }
