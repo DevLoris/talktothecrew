@@ -2,6 +2,8 @@
     package="loris.pinna.channelmessaging">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
 
     <application
         android:allowBackup="true"
@@ -28,6 +30,10 @@
         </activity>
         <activity
             android:name="loris.pinna.channelmessaging.MessageListActivity"
+            android:label="@string/app_name" android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name="loris.pinna.channelmessaging.FriendMessageListActivity"
             android:label="@string/app_name" android:windowSoftInputMode="adjustPan" >
         </activity>
     </application>

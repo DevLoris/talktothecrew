@@ -9,18 +9,15 @@ package loris.pinna.channelmessaging.classes;
  * Created by pinnal on 22/01/2018.
  */
 public class Message {
-    /*
-    "userID": 1,
-			"message": "Ceci est un test",
-			"date": "2015-01-22 21:12:17",
-			"imageUrl": "http://www.joomlaworks.net/images/demos/galleries/abstract/7.jpg"
-     */
 
     private int userID;
     private String username;
     private String message;
     private String date;
     private String imageUrl;
+    private int everRead;
+    private int sendbyme;
+    private String messageImageUrl;
 
     public Message(int userID, String username, String message, String date, String imageUrl) {
         this.userID = userID;
@@ -30,12 +27,15 @@ public class Message {
         this.imageUrl = imageUrl;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
+    public Message(int userID, int sendbyme, String username, String message, String date, String imageUrl, int everRead) {
+        this.userID = userID;
+        this.sendbyme = sendbyme;
         this.username = username;
+        this.message = message;
+        this.date = date;
+        this.imageUrl = imageUrl;
+        this.everRead = everRead;
     }
 
     public int getUserID() {
@@ -44,6 +44,22 @@ public class Message {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public int getSendbyme() {
+        return sendbyme;
+    }
+
+    public void setSendbyme(int sendbyme) {
+        this.sendbyme = sendbyme;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMessage() {
@@ -68,5 +84,21 @@ public class Message {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getEverRead() {
+        return everRead;
+    }
+
+    public void setEverRead(int everRead) {
+        this.everRead = everRead;
+    }
+
+    public String getMessageImageUrl() {
+        return messageImageUrl;
+    }
+
+    public void setMessageImageUrl(String messageImageUrl) {
+        this.messageImageUrl = messageImageUrl;
     }
 }

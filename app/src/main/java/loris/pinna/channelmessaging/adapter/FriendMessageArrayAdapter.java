@@ -16,6 +16,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,12 @@ import loris.pinna.channelmessaging.http.HttpGetImage;
 import loris.pinna.channelmessaging.http.ImageRequest;
 import loris.pinna.channelmessaging.listeners.OnImageDownloadListener;
 
-public class FriendMessageArrayAdapter extends ArrayAdapter<FriendMessage> {
+public class FriendMessageArrayAdapter extends ArrayAdapter<Message> {
     private final Context context;
-    private final ArrayList<FriendMessage> values;
+    private final ArrayList<Message> values;
     private final String username;
     private final File path;
-    public FriendMessageArrayAdapter(Context context, ArrayList<FriendMessage> values, String username, File path) {
+    public FriendMessageArrayAdapter(Context context, ArrayList<Message> values, String username, File path) {
         super(context,  R.layout.view_friendmessage, values);
         this.context = context;
         this.values = values;
@@ -52,7 +53,7 @@ public class FriendMessageArrayAdapter extends ArrayAdapter<FriendMessage> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-        FriendMessage item = values.get(position);
+        Message item = values.get(position);
 
         View rowView = inflater.inflate(  R.layout.view_friendmessage, parent, false);
 
@@ -83,6 +84,9 @@ public class FriendMessageArrayAdapter extends ArrayAdapter<FriendMessage> {
             }
         });
         image.execute(request);
+
+        if(item.getEverRead() == 0)
+            textView2.setTypeface(null, Typeface.BOLD);
 
         if(this.username.equalsIgnoreCase(item.getUsername())) {
             layout.setBackgroundResource(R.drawable.shape_my);

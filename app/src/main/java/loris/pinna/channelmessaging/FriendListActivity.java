@@ -11,11 +11,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import java.util.List;
 
 import loris.pinna.channelmessaging.adapter.FriendArrayAdapter;
+import loris.pinna.channelmessaging.classes.Channel;
 import loris.pinna.channelmessaging.db.User;
 import loris.pinna.channelmessaging.db.UserDataSource;
 
@@ -64,10 +66,25 @@ public class FriendListActivity extends Activity implements View.OnClickListener
          */
         UserDataSource source = new UserDataSource(getApplicationContext());
         source.open();
-        List<User> users = source.getAllUsers();
+        final List<User> users = source.getAllUsers();
 
         lvMyListView.setAdapter(new FriendArrayAdapter(getApplicationContext(), users, getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)));
+        lvMyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User user = users.get(position);
 
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putInt("userid", user.getUserID());
+                editor.putString("username", user.getUsername());
+                editor.commit();
+
+
+                Intent intent = new Intent(getApplicationContext(), FriendMessageListActivity.class);
+                startActivity(intent);
+
+            }
+        });
         source.close();
 
     }

@@ -83,6 +83,24 @@ public class MessageArrayAdapter extends ArrayAdapter<Message> {
         });
         image.execute(request);
 
+        if(item.getMessageImageUrl() != null) {
+            final ImageView img_message = (ImageView) rowView.findViewById(R.id.image_user);
+
+            ImageRequest request_message = new ImageRequest(item.getImageUrl(), item.getMessageImageUrl());
+            HttpGetImage image_message = new HttpGetImage(this.context);
+            image_message.addOnImageDownload(new OnImageDownloadListener() {
+                @Override
+                public void onDownloadComplete(String downloadedContent) {
+                    img_message.setImageBitmap( getRoundedCornerBitmap(BitmapFactory.decodeFile(downloadedContent)));
+                }
+
+                @Override
+                public void onDownloadError(String error) {
+                }
+            });
+            image_message.execute(request);
+        }
+
         if(this.username.equalsIgnoreCase(item.getUsername())) {
             layout.setBackgroundResource(R.drawable.shape_my);
             textView2.setTextColor(Color.WHITE);

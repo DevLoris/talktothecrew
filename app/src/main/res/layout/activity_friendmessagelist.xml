@@ -35,16 +35,6 @@
         android:weightSum="1"
         android:background="#bbdefb">
 
-        <ImageButton
-            android:layout_width="54dp"
-            android:layout_height="match_parent"
-            android:text="X"
-            android:id="@+id/photo_button"
-            android:textColor="@color/colorPrimary"
-            android:icon="@android:drawable/ic_menu_camera"
-            android:background="@drawable/abc_item_background_holo_light"
-            android:src="@android:drawable/ic_menu_camera" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
