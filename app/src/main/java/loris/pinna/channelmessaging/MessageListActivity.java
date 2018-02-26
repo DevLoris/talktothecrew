@@ -57,7 +57,16 @@ public class MessageListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messagelist);
 
+        list_messages = (ListView)findViewById(R.id.messages_list);
+        send_message = (Button) findViewById(R.id.send_message);
+        photo = (ImageButton) findViewById(R.id.photo_button);
+        input_chatmessage = (EditText) findViewById(R.id.input_chatmessage);
+        conversations_name = (TextView) findViewById(R.id.conversation_name);
 
+        setup();
+    }
+
+    public void setup() {
         final SharedPreferences settings =
                 getSharedPreferences(PREFS_NAME, 0);
         final String token =  settings.getString("access", "");
@@ -65,14 +74,8 @@ public class MessageListActivity extends Activity {
         final String channel_name =  settings.getString("channel_name", "???");
 
 
-        list_messages = (ListView)findViewById(R.id.messages_list);
-        send_message = (Button) findViewById(R.id.send_message);
-        photo = (ImageButton) findViewById(R.id.photo_button);
-        input_chatmessage = (EditText) findViewById(R.id.input_chatmessage);
-        conversations_name = (TextView) findViewById(R.id.conversation_name);
-        conversations_name.setText("Conv' : " + channel_name);
 
-       refreshMessage(token, channel);
+        refreshMessage(token, channel);
 
         list_messages.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -108,7 +111,9 @@ public class MessageListActivity extends Activity {
                 takePhoto(new File( getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/uploads/" + (new Random().nextInt(200000)) + ".jpg"), token,   channel);
             }
         });
+
     }
+
 
     public void sendMessage(final String token,final  int channel, final String message) {
         PostRequest postRequest = new PostRequest(

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#01579b">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Conv&apos; : {message}"
+            android:id="@+id/conversation_name"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/abc_action_bar_overflow_padding_end_material"
+            android:textColor="#eeeeee" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="371dp"
+        android:id="@+id/messages_list"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.97" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:background="#bbdefb">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/input_chatmessage"
+            android:layout_weight="1"
+            style="@android:style/Theme.InputMethod"
+            android:background="@android:color/transparent"
+            android:textColor="#212121"
+            android:padding="5dp"
+            android:paddingLeft="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Envoyer"
+            android:id="@+id/send_message"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/abc_item_background_holo_light" />
+    </LinearLayout>
+</LinearLayout>

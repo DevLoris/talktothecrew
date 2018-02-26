@@ -11,4 +11,11 @@
         android:layout_weight="1"
         android:name="loris.pinna.channelmessaging.fragments.ChannelListFragment"
         android:id="@+id/fragmentA_ID" />
+    <fragment
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:name="loris.pinna.channelmessaging.fragments.MessageFragment"
+        android:id="@+id/fragmentB_ID"
+        android:layout_gravity="center_vertical" />
 </LinearLayout>
