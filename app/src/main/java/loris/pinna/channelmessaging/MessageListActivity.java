@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -108,7 +110,14 @@ public class MessageListActivity extends Activity {
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePhoto(new File( getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/uploads/" + (new Random().nextInt(200000)) + ".jpg"), token,   channel);
+                try {
+                    File f = File.createTempFile(""+(new Random().nextInt(200000)), ".jpg",getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+                    MessageListActivity.this._photoFile = f;
+                    Uri uri = FileProvider.getUriForFile(getApplicationContext(), getPackageName()+".fileprovider", f);
+                    takePhoto(uri, token,   channel);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -190,14 +199,15 @@ public class MessageListActivity extends Activity {
 
     private static final int INTENT_PHOTO = 0;
     private File _photoFile;
-    private void takePhoto(File _photoFile, String token, int channel){
-        this._photoFile = _photoFile;
-        Uri _fileUri = Uri.fromFile(_photoFile);
+    private Intent _photoIntent;
+    private void takePhoto(Uri _photoFile, String token, int channel){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE
         );
-        intent.putExtra( MediaStore.EXTRA_OUTPUT, _fileUri);
+        intent.putExtra( MediaStore.EXTRA_OUTPUT, _photoFile);
         intent.putExtra("token", token);
-        intent.putExtra("channel", channel);
+        intent.putExtra("channel", ""+channel);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        _photoIntent= intent;
         startActivityForResult(intent, INTENT_PHOTO);
     }
     @Override
@@ -205,36 +215,41 @@ public class MessageListActivity extends Activity {
         switch (requestCode) {
             case INTENT_PHOTO:
                 if (resultCode == RESULT_OK)
-                {
+                { ;
                     try {
                         new ResizeImage().resizeFile(_photoFile, getApplicationContext());
-                        String[] projection = { MediaStore.Images.ImageColumns.SIZE,
+                        String[] projection = {MediaStore.Images.ImageColumns.SIZE,
                                 MediaStore.Images.ImageColumns.DISPLAY_NAME,
-                                MediaStore.Images.ImageColumns.DATA, BaseColumns._ID, };
+                                MediaStore.Images.ImageColumns.DATA, BaseColumns._ID,};
                         Cursor c = null;
                         Uri u = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
+                        Log.d("CREWPICS", _photoIntent.getStringExtra("token"));
                         UploadFileToServer uploadFileToServer = new UploadFileToServer(
-                                getApplicationContext(),
+                                MessageListActivity.this,
                                 _photoFile.getPath(),
                                 new HashMap<String, String>() {{
-                                    put("accesstoken", intent.getStringExtra("token"));
-                                    put("channelid", intent.getStringExtra("channel"));
+                                    put("accesstoken", _photoIntent.getStringExtra("token"));
+                                    put("channelid", _photoIntent.getStringExtra("channel"));
                                 }},
                                 new UploadFileToServer.OnUploadFileListener() {
                                     @Override
                                     public void onResponse(String result) {
-                                        refreshMessage( intent.getStringExtra("token"),  Integer.parseInt(intent.getStringExtra("channel")));
+                                        Log.d("CREWPICS", " Uploaded ");
+                                        refreshMessage(_photoIntent.getStringExtra("token"), Integer.parseInt(_photoIntent.getStringExtra("channel")));
                                     }
 
                                     @Override
                                     public void onFailed(IOException error) {
+                                        Log.e("CREWPICS", "onFailed: ", error);
 
                                     }
                                 }
                         );
+                        uploadFileToServer.execute();
+                        Log.d("CREWPICS", " End upload ");
 
-                            try {
+                        try {
                             if (u != null) {
                                 c = managedQuery(u, projection, null, null, null);
                             }
@@ -251,6 +266,7 @@ public class MessageListActivity extends Activity {
                         }
                     }catch (IOException e) {
 
+                        Log.e("CREWPICS", "onFailed: ",e);
                     }
 
                 }

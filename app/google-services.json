@@ -1,0 +1,141 @@
+{
+  "project_info": {
+    "project_number": "1035725755617",
+    "firebase_url": "https://channelmessaging.firebaseio.com",
+    "project_id": "channelmessaging",
+    "storage_bucket": "channelmessaging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035725755617:android:1c7e2e52e727c5de",
+        "android_client_info": {
+          "package_name": "test.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035725755617-tdeqhroj9tilqlsp2g9dkni4361l0qao.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1035725755617-356qeotcg8vn9nl83tfd6312rh1t0p61.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1035725755617-ic9urvor2iahc7765pkn879v6qt3f38b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAAU-P1zAQi9QVuwC49aYtbELtj9FYPXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035725755617:android:a564ea64370bc204",
+        "android_client_info": {
+          "package_name": "bischof.raphael.channelmessaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035725755617-tdeqhroj9tilqlsp2g9dkni4361l0qao.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1035725755617-356qeotcg8vn9nl83tfd6312rh1t0p61.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1035725755617-ic9urvor2iahc7765pkn879v6qt3f38b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAAU-P1zAQi9QVuwC49aYtbELtj9FYPXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035725755617:android:cd57c83a3f41d52e",
+        "android_client_info": {
+          "package_name": "loris.pinna.channelmessaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035725755617-mmt14d10edk7jpecfm2an079q5vrbko9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "loris.pinna.channelmessaging",
+            "certificate_hash": "bbf4a58d5e909f22199601be2a7f0547701eb258"
+          }
+        },
+        {
+          "client_id": "1035725755617-tdeqhroj9tilqlsp2g9dkni4361l0qao.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1035725755617-356qeotcg8vn9nl83tfd6312rh1t0p61.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1035725755617-ic9urvor2iahc7765pkn879v6qt3f38b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAAU-P1zAQi9QVuwC49aYtbELtj9FYPXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035725755617-tdeqhroj9tilqlsp2g9dkni4361l0qao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

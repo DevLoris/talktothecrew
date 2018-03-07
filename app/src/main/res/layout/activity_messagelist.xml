@@ -8,13 +8,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#01579b">
+        android:background="#2ba2ff">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Conv&apos; : {message}"
+            android:text="Lo&apos;Chat"
             android:id="@+id/conversation_name"
             android:layout_gravity="center_horizontal"
             android:layout_margin="@dimen/abc_action_bar_overflow_padding_end_material"
