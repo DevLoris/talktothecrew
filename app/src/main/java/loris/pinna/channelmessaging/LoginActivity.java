@@ -27,6 +27,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private TextView input_password;
 
     private static final String PREFS_NAME = "access_token";
+    private static final String PREFS_NAME2 = "notif_token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        final SharedPreferences settings =
+                getSharedPreferences(PREFS_NAME, 0);
+        final String token =  settings.getString("notif", "");
+
         PostRequest postRequest = new PostRequest(
                 "http://www.raphaelbischof.fr/messaging/?function=connect",
                 new HashMap<String, String>(){{
                     put("username", input_blase.getText().toString());
                     put("password", input_password.getText().toString());
+                    put("registrationid",token);
                 }}
         );
 

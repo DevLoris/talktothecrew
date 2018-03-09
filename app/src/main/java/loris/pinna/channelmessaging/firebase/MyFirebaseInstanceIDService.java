@@ -17,6 +17,7 @@ package loris.pinna.channelmessaging.firebase;
  */
 
 
+        import android.content.SharedPreferences;
         import android.util.Log;
 
         import com.google.firebase.iid.FirebaseInstanceId;
@@ -26,6 +27,7 @@ package loris.pinna.channelmessaging.firebase;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private static final String TAG = "MyFirebaseIIDService";
+    private static final String PREFS_NAME = "notif_token";
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of
@@ -38,6 +40,13 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
+
+
+        final SharedPreferences settings =
+                getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("notif",refreshedToken);
+        editor.commit();
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -56,5 +65,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      */
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
+
     }
 }

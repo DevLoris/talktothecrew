@@ -19,6 +19,9 @@ public class Message {
     private int sendbyme;
     private String messageImageUrl;
 
+
+    private String soundUrl;
+
     public Message(int userID, String username, String message, String date, String imageUrl) {
         this.userID = userID;
         this.username = username;
@@ -100,5 +103,12 @@ public class Message {
 
     public void setMessageImageUrl(String messageImageUrl) {
         this.messageImageUrl = messageImageUrl;
+    }
+    public String getSoundUrl() {
+        return soundUrl;
+    }
+
+    public void setSoundUrl(String soundUrl) {
+        this.soundUrl = soundUrl;
     }
 }

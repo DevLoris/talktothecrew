@@ -61,6 +61,8 @@ public class MessageArrayAdapter extends ArrayAdapter<Message> {
         View rowView;
         if(item.getMessageImageUrl() != "")
             rowView = inflater.inflate(  R.layout.view_message_pics, parent, false);
+        else if(item.getSoundUrl() != "")
+            rowView = inflater.inflate(  R.layout.view_message_pics, parent, false);
         else
             rowView = inflater.inflate(  R.layout.view_message, parent, false);
 
