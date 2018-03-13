@@ -90,6 +90,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 Intent intent = new Intent(getApplicationContext(), ChannelListActivity.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, findViewById(R.id.logo), "logo").toBundle());
+                v.clearAnimation();
 
             }
 
@@ -105,6 +106,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     }
                 });
                 mySnackbar.show();
+                v.clearAnimation();
 
                //Toast.makeText(getApplicationContext(), error.getResponse(), Toast.LENGTH_SHORT).show();
             }
@@ -117,7 +119,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mHandlerTada.postDelayed(new Runnable() {
             public void run() {
                 handler.execute(postRequest);
-                v.clearAnimation();
 
             }
         }, 500);
