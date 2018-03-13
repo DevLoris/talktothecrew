@@ -95,7 +95,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onDownloadError(JsonLoginResponse error) {
-                v.clearAnimation();
 
                 Snackbar mySnackbar = Snackbar.make(findViewById(R.id.llBackground),
                         error.getResponse(), Snackbar.LENGTH_SHORT);
@@ -118,6 +117,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mHandlerTada.postDelayed(new Runnable() {
             public void run() {
                 handler.execute(postRequest);
+                v.clearAnimation();
 
             }
         }, 500);
