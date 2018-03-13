@@ -152,7 +152,7 @@ public class ChannelListActivity extends ActionBarActivity implements View.OnCli
                 channels_list = downloadedContent.getChannels();
 
                 ChannelListFragment fragA = (ChannelListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentA_ID);
-                fragA.fillList(requestChannels());
+                fragA.fillList(channels_list);
             }
 
             @Override

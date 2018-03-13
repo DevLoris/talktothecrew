@@ -29,6 +29,11 @@ dependencies {
     compile 'com.google.android.gms:play-services:11.0.0'
     compile 'com.google.firebase:firebase-core:10.2.0'
     compile 'com.google.firebase:firebase-messaging:10.2.0'
+    compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:support-compat:24.0.0'
+    compile 'com.daimajia.easing:library:2.0@aar'
+    compile 'com.daimajia.androidanimations:library:2.2@aar'
+    compile 'com.dynamitechetan.flowinggradient:flowinggradient:1.1'
 
 }
 

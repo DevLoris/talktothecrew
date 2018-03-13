@@ -1,11 +1,30 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
 
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">@transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_image_transform</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_top</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+    </style>
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <!-- Hint color et label color si pas de focus -->
+        <item name="android:textColorHint">@color/red</item>
+        <item name="android:textSize">20sp</item>
+        <!-- bar color -->
+        <item name="colorControlNormal">@color/pink_300</item>
+        <!-- Label color si focus -->
+        <item name="colorControlActivated">@color/green_400</item>
+    </style>
 </resources>

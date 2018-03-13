@@ -15,18 +15,32 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:layout_width="0dip"
+            android:theme="?android:attr/borderlessButtonStyle"
             android:text="Les crews"
             android:id="@+id/crews_button"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="@color/material_blue_grey_900"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:layout_width="0dip"
+            android:theme="?android:attr/borderlessButtonStyle"
             android:text="Les Copaings"
-            android:id="@+id/friends_button" />
+            android:id="@+id/friends_button"
+            android:background="@color/material_blue_grey_800"
+            android:textColor="#dfdfdf" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="195dp"
+        android:layout_height="133dp"
+        android:id="@+id/logo"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo"
+        android:transitionName="logo"
+        android:tint="#000000" />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,88 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:id="@+id/llBackground"
+    android:background="@drawable/background_gradiant"
+    android:gravity="center_vertical"
+    android:weightSum="1">
+    <ImageView
+        android:layout_width="195dp"
+        android:layout_height="133dp"
+        android:id="@+id/logo"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/logo" />
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#01579b"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Espace secret"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="@dimen/abc_action_bar_overflow_padding_end_material"
-            android:textColor="#eeeeee" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ton blase"
-            android:id="@+id/lbl_blase"
-            android:layout_weight="0.26"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:padding="10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Code secret"
-            android:id="@+id/lbl_password"
-            android:layout_weight="0.17"
-            android:layout_marginTop="31dp"
-            android:layout_below="@+id/input_blase"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rejoindre la secte"
-            android:id="@+id/login"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
-            android:layout_below="@+id/input_password"
-            android:layout_centerHorizontal="true" />
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/input_blase"
-            android:layout_below="@+id/lbl_blase"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:text="lpinn" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textEmailAddress"
+            android:hint="@string/identifiant"
+            android:text="lpinn"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
             android:id="@+id/input_password"
-            android:layout_below="@+id/lbl_password"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:text="lorispinna" />
-    </RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            android:text="lorispinna"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:text="Rejoindre la secte"
+        android:id="@+id/login"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/input_password"
+        android:layout_centerHorizontal="true"
+        android:background="@color/teal"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Connectez-vous pour parler aux camarades"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:paddingTop="6dp" />
 
 </LinearLayout>

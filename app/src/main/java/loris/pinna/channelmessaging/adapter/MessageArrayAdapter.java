@@ -122,13 +122,16 @@ public class MessageArrayAdapter extends ArrayAdapter<Message> {
             });
         }
         else {
-            TextView textView2 = (TextView) rowView.findViewById(R.id.message_message);
-            textView2.setText(item.getMessage());
-            textView2.setTextColor(Color.BLACK);
+            if(item.getMessage() != "" ) {
+                Log.d("TEST", "getView: " + item.getMessage());
+                TextView textView2 = (TextView) rowView.findViewById(R.id.message_message);
+                textView2.setText(item.getMessage());
+                textView2.setTextColor(Color.BLACK);
 
-            if(this.username.equalsIgnoreCase(item.getUsername())) {
-                layout.setBackgroundResource(R.drawable.shape_my);
-                textView2.setTextColor(Color.WHITE);
+                if (this.username.equalsIgnoreCase(item.getUsername())) {
+                    layout.setBackgroundResource(R.drawable.shape_my);
+                    textView2.setTextColor(Color.WHITE);
+                }
             }
         }
 
